@@ -5,7 +5,21 @@ const express = require("express");
 const app = express();
 /* allows us to initialize our server, make API requests, etc */
 
+const cors = require("cors");
+
+// fix parsing issues when creating job using json body
+app.use(express.json());
+
+// allows us to make API requests and run react app from same computer
+// whitelists our own computer
+app.use(cors());
+
 const db = require("./models");
+
+//Routers (importing and applying router)
+const jobRouter = require("./routes/Jobs");
+app.use("/jobs", jobRouter);
+
 db.sequelize.sync().then(() => {
   // port has to be different than the react application port
   // run function whenever server is running
