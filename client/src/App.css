@@ -12,22 +12,22 @@ body {
 }
 .jobs {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   padding-top: 40px;
-  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100vw;
+}
+.job-post h2 {
+  background-color: white !important;
+  color: black !important;
 }
 .job-post {
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
+  width: 110vw;
   display: flex;
-  flex-direction: column;
-  margin: 50px;
-  border: 1px solid lightgray;
+  flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
-
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -37,7 +37,6 @@ body {
 }
 .job-post .job-title {
   flex: 20%;
-  border-bottom: 1px solid lightgray;
   background-color: dodgerblue;
   display: grid;
   place-content: center;
@@ -52,14 +51,11 @@ body {
 
 .job-post .url {
   flex: 20%;
-  border-top: 1px solid lightgray;
   display: flex;
   align-items: center;
   padding-left: 15px;
   background-color: dodgerblue;
   color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .addJobContainer {
@@ -114,4 +110,19 @@ body {
 
 span {
   color: red;
+}
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  background-color: dodgerblue;
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
 }
