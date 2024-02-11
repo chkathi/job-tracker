@@ -15,4 +15,22 @@ router.post("/", async (request, response) => {
   response.json(job);
 });
 
+// This route is the one that you query by ID
+// passing param id using :id
+router.get("/byId/:id", async (request, response) => {
+  const id = request.params.id;
+
+  // Find by primary key (sequelize function)
+  const job = await Jobs.findByPk(id);
+  response.json(job);
+});
+
+router.get("/byCompany/:companyName", async (request, response) => {
+  const companyName = request.params.companyName;
+
+  // Find by primary key (sequelize function)
+  const job = await Jobs.findAll({ where: { companyName: companyName } });
+  response.json(job);
+});
+
 module.exports = router;

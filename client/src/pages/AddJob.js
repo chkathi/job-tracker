@@ -1,5 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import axios from "axios";
 import "../App.css";
 
 export const AddJob = () => {
@@ -9,8 +11,15 @@ export const AddJob = () => {
     url: "",
   };
 
+  // Redirecting the page after we submit the entry
+  let navigate = useNavigate();
+
+  // Making Post requests
   const onSubmit = (data) => {
-    console.log(data);
+    const dataAdded = { ...data, applied: false };
+    axios.post("http://localhost:3001/jobs", dataAdded).then((response) => {
+      navigate("/"); // redirects to home
+    });
   };
 
   const validationSchema = Yup.object().shape({
