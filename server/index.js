@@ -20,6 +20,9 @@ const db = require("./models");
 const jobRouter = require("./routes/Jobs");
 app.use("/jobs", jobRouter);
 
+const usersRouter = require("./routes/Users");
+app.use("/auth", usersRouter);
+
 db.sequelize.sync().then(() => {
   // port has to be different than the react application port
   // run function whenever server is running
