@@ -3,6 +3,8 @@ const router = express.Router();
 const { Users } = require("../models");
 const bcrypt = require("bcrypt"); // allows us to hash password
 
+const { sign } = require("jsonwebtoken");
+
 router.post("/", async (request, response) => {
   const { username, password } = request.body;
 
@@ -22,13 +24,19 @@ router.post("/login", async (request, response) => {
   const user = await Users.findOne({ where: { username: username } });
 
   if (!user) response.json({ error: "USER_NOT_FOUND" });
+  else if (user) {
+    bcrypt.compare(password, user.password).then((match) => {
+      if (!match)
+        response.json({ error: "Wrong username and password combination" });
 
-  bcrypt.compare(password, user.password).then((match) => {
-    if (!match)
-      response.json({ error: "Wrong username and password combination" });
+      const accessToken = sign(
+        { username: user.username, id: user.id },
+        "importantsecret"
+      );
 
-    response.json("LOGIN_SUCCESS");
-  });
+      response.json(accessToken);
+    });
+  }
 });
 
 module.exports = router;

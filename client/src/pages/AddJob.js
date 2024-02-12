@@ -17,9 +17,18 @@ export const AddJob = () => {
   // Making Post requests
   const onSubmit = (data) => {
     const dataAdded = { ...data, applied: false };
-    axios.post("http://localhost:3001/jobs", dataAdded).then((response) => {
-      navigate("/"); // redirects to home
-    });
+    axios
+      .post("http://localhost:3001/jobs", dataAdded, {
+        headers: { accessToken: sessionStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          console.log(response.data.error);
+        } else {
+          navigate("/"); // redirects to home
+          console.log(response.data);
+        }
+      });
   };
 
   const validationSchema = Yup.object().shape({

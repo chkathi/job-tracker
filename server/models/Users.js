@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
 
   // Creating association
   // Users has many jobs
-  Users.associate = (models) => {
-    Users.hasMany(models.Jobs, {
-      onDelete: "cascade",
-    });
-  };
+  // Users.associate = (models) => {
+  //   Users.hasMany(models.Jobs, {
+  //     onDelete: "cascade",
+  //   });
+  // };
 
   return Users;
 };
