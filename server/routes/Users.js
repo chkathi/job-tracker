@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt"); // allows us to hash password
 
 const { sign } = require("jsonwebtoken");
 
+const { validateToken } = require("../middlewares/AuthMiddleware");
 router.post("/", async (request, response) => {
   const { username, password } = request.body;
 
@@ -17,26 +18,27 @@ router.post("/", async (request, response) => {
   response.json("USER_SUCCESS");
 });
 
-router.post("/login", async (request, response) => {
-  const { username, password } = request.body;
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
 
-  // check if username exists
   const user = await Users.findOne({ where: { username: username } });
 
-  if (!user) response.json({ error: "USER_NOT_FOUND" });
-  else if (user) {
-    bcrypt.compare(password, user.password).then((match) => {
-      if (!match)
-        response.json({ error: "Wrong username and password combination" });
+  if (!user) res.json({ error: "User Doesn't Exist" });
 
-      const accessToken = sign(
-        { username: user.username, id: user.id },
-        "importantsecret"
-      );
+  bcrypt.compare(password, user.password).then(async (match) => {
+    if (!match) res.json({ error: "Wrong Username And Password Combination" });
 
-      response.json(accessToken);
-    });
-  }
+    const accessToken = sign(
+      { username: user.username, id: user.id },
+      "important"
+    );
+    res.json(accessToken);
+  });
+});
+
+// check if there is valid token
+router.get("/auth", validateToken, (request, response) => {
+  response.json(request.user);
 });
 
 module.exports = router;

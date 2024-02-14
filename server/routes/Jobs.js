@@ -12,6 +12,8 @@ router.get("/", async (request, response) => {
 router.post("/", validateToken, async (request, response) => {
   // parse the body to create job
   const job = request.body;
+  const UserId = request.user.id;
+  job.UserId = UserId;
   await Jobs.create(job); // creates entry in database
 
   response.json(job);

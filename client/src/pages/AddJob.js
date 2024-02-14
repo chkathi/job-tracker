@@ -19,11 +19,11 @@ export const AddJob = () => {
     const dataAdded = { ...data, applied: false };
     axios
       .post("http://localhost:3001/jobs", dataAdded, {
-        headers: { accessToken: sessionStorage.getItem("accessToken") },
+        headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {
         if (response.data.error) {
-          console.log(response.data.error);
+          alert(response.data.error);
         } else {
           navigate("/"); // redirects to home
           console.log(response.data);

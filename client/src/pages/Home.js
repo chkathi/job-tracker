@@ -4,11 +4,16 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export const Home = () => {
+  const [user, setUser] = useState({});
   const [jobsList, setList] = useState([]);
   const [companySearch, setCompanySearch] = useState("");
   const initialValue = {
     companyName: "",
   };
+
+  // getting user and setting user
+  useEffect(() => {});
+
   // Making Post requests
   const onSubmit = (data) => {
     console.log(data);
@@ -62,6 +67,10 @@ export const Home = () => {
         </div>
 
         {jobsList.map((job, key) => {
+          // display all jobs associate with current user
+          // Q1 How do we know what userId currently is
+          // get token -> we have to get username -> get username's id
+          // -> compareId
           return (
             <div className="job-post" key={job.id}>
               <div
