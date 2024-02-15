@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Jobs } = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const { response } = require("express");
 
 router.get("/", async (request, response) => {
   const listOfJobs = await Jobs.findAll();
@@ -17,6 +18,18 @@ router.post("/", validateToken, async (request, response) => {
   await Jobs.create(job); // creates entry in database
 
   response.json(job);
+});
+
+router.delete("/:jobId", validateToken, async (req, res) => {
+  const jobId = req.params.jobId;
+
+  await Jobs.destroy({
+    where: {
+      id: jobId,
+    },
+  });
+
+  res.json("DELETED_JOB");
 });
 
 // This route is the one that you query by ID

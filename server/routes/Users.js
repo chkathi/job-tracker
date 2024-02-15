@@ -32,11 +32,12 @@ router.post("/login", async (req, res) => {
       { username: user.username, id: user.id },
       "important"
     );
-    res.json(accessToken);
+    res.json({ token: accessToken, username: username, id: user.id });
   });
 });
 
 // check if there is valid token
+// Returns information about the user
 router.get("/auth", validateToken, (request, response) => {
   response.json(request.user);
 });
