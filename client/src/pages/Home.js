@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AuthContext } from "../Helper/AuthContext";
 import SearchIcon from "@mui/icons-material/Search";
+import { Row, Col, Container } from "react-bootstrap";
 
 export const Home = () => {
   const [jobsList, setList] = useState([]);
@@ -77,14 +78,10 @@ export const Home = () => {
           </button>
         </Form>
       </Formik>
-      <button onClick={() => setCompanySearch("")}> Show All</button>
+      <button onClick={() => setCompanySearch("")} className="show">
+        Show All Jobs
+      </button>
       <div className="jobs">
-        <div className="job-post">
-          <h2 className="job-title">Job Title</h2>
-          <h2 className="company">Company Name</h2>
-          <h2 className="url">Link to job</h2>
-        </div>
-
         {authState.status &&
           jobsList.map((job, key) => {
             // display all jobs associate with current user
@@ -105,11 +102,12 @@ export const Home = () => {
                   <div className="company">{job.companyName}</div>
                   <div className="url">{job.url} </div>
                   <button
+                    className="delete"
                     onClick={() => {
                       deleteJob(job.id);
                     }}
                   >
-                    X
+                    Delete
                   </button>
                 </div>
               );

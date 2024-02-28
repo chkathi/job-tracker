@@ -54,16 +54,19 @@ function App() {
           <div className="navbar">
             <Link to="/">Home</Link>
             <Link to="/addJob">Add Job</Link>
-            {!authState.status ? (
-              <>
-                <Link to="/login">Login</Link>
-                <Link to="/registration">Registration</Link>
-              </>
-            ) : (
-              <button onClick={logout}>Log Out</button>
-            )}
-
-            <h1>{authState.username}</h1>
+            <div>
+              {!authState.status ? (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/registration">Registration</Link>
+                </>
+              ) : (
+                <>
+                  <Link> {authState.username}</Link>
+                  <button onClick={logout}>Log Out</button>
+                </>
+              )}
+            </div>
           </div>
           <Routes>
             <Route path="/" element={<Home />} />

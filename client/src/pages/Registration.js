@@ -22,7 +22,8 @@ function Registration() {
   };
 
   return (
-    <div>
+    // Replace with registration stuff
+    <div class="addJobPage">
       <Formik
         initialValues={initialValue}
         onSubmit={onSubmit}

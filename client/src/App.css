@@ -20,19 +20,17 @@ body {
   align-items: left;
   padding-top: 40px;
   justify-content: center;
-  flex-wrap: wrap;
-  width: 100vw;
+  width: 100%;
 }
-.job-post h2 {
-  background-color: white !important;
-  color: black !important;
-}
+
 .job-post {
-  width: 100vw;
+  padding: 2px;
   display: flex;
   flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 2px;
+  margin: 4px;
 }
 
 .job-post:hover {
@@ -40,7 +38,8 @@ body {
   cursor: pointer;
 }
 .job-post .job-title {
-  flex: 20%;
+  flex: 30%;
+  border-radius: 2px;
   background-color: dodgerblue;
   display: grid;
   place-content: center;
@@ -48,13 +47,16 @@ body {
 }
 
 .job-post .company {
-  flex: 20%;
+  border: 2px solid grey;
+  border-radius: 5px;
+  flex: 30%;
   display: grid;
   place-content: center;
 }
 
 .job-post .url {
-  flex: 20%;
+  border-radius: 2px;
+  flex: 30%;
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -62,49 +64,33 @@ body {
   color: white;
 }
 
-.addJobContainer {
-  display: flex;
-  flex-direction: column;
+.job-post button {
+  border: 2px solid grey;
+  border-radius: 5px;
+  flex: 10%;
 }
 
-/* Create job form styling*/
+.addJobPage {
+  border: 2px solid rgb(36, 88, 161);
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+}
 
 .addJobPage form {
   font-family: Arial, Helvetica, sans-serif;
-  width: 100vw;
-  height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.searchCompanyFrom {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 50vw;
-  height: auto;
-  padding: 20px;
-  margin-top: 10px;
-  border: 5px solid dodgerblue;
-  border-radius: 5px;
-}
-
-.searchCompanyFrom input {
-  width: 75%;
-}
-
-.searchCompanyFrom button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+  align-items: flex-start;
+  margin: 5px;
 }
 
 .formContainer #inputCreatePost {
-  height: 40px;
+  width: 75%;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 2px solid grey;
+  border: 2px solid rgb(36, 88, 161);
   border-radius: 5px;
   padding-left: 10px;
   font-size: 20px;
@@ -112,7 +98,6 @@ body {
 
 .formContainer button {
   margin-top: 15px;
-  height: 40px;
   border: none;
   background-color: lightskyblue;
   border-radius: 5px;
@@ -122,6 +107,37 @@ body {
 .formContainer button:hover {
   cursor: pointer;
   background-color: dodgerblue;
+}
+/* Create job form styling*/
+
+.searchCompanyFrom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50vw;
+  height: auto;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.searchCompanyFrom input {
+  width: 75%;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 2px solid rgb(36, 88, 161);
+}
+
+.searchCompanyFrom button {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.home .show {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 2px solid rgb(36, 88, 161);
+  width: 25%;
 }
 
 span {
@@ -138,13 +154,14 @@ span {
 }
 
 .navbar button {
+  border-radius: 5px;
   width: 100px;
   height: 40px;
   cursor: pointer;
 }
 
 .navbar a {
-  margin-left: 20px;
+  margin: 20px;
   text-decoration: none;
   color: white;
 }
@@ -152,17 +169,24 @@ span {
 /* LOGIN */
 
 .loginContainer {
+  border: 2px solid rgb(36, 88, 161);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
-  padding-top: 100px;
+  margin: auto;
+  margin-top: 10px;
+  width: 50%;
+  padding: 50px;
+}
+
+.loginContainer form {
+  align-items: flex-start;
 }
 
 .loginContainer input,
 button {
-  width: 200px;
+  width: 50%;
   height: 50px;
   border-radius: 8px;
   border: none;
@@ -170,6 +194,8 @@ button {
 }
 
 .loginContainer button {
+  margin-top: 10px;
+  border-radius: 5px;
   background-color: dodgerblue;
   color: white;
 }
